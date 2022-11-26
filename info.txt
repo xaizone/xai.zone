@@ -39,4 +39,10 @@ DELETION
 
 If you would like to request a permanent file deletion,
 please contact me via IRC - <a href="ircs://irc.libera.chat/xaizone">irc.libera.chat</a>
+
+SOURCE
+------
+
+You can find the source of this website on my GitHub.
+<a href="https://github.com/xaizone/xai.zone">https://github.com/xaizone/xai.zone</a>
 </pre>
