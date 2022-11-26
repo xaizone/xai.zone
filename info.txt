@@ -1,0 +1,42 @@
+<pre>
+           _
+ __ ____ _(_)  ______ _ _  ___
+ \ \ / _` | |_|_ / _ \ ' \/ -_)
+ /_\_\__,_|_(_)__\___/_||_\___|
+
+===============================
+
+HTTP POST:
+    curl -F'file=@yourfile.png' https://xai.zone
+
+Blacklisted MIME types:     
+    'text/html',
+    'application/x-httpd-php',
+    'application/xhtml+xml',
+    'application/x-dosexec',
+    'application/x-msdownload',
+    'application/java-archive',
+    'application/java-vm'
+
+Maximum body size: 512M
+
+Files are currently kept for 14 days.
+
+TERMS OF SERVICE
+----------------
+
+xai.zone is NOT a service for:
+    * pornography
+    * gore
+    * piracy
+    * any leaks of personal information
+
+If you violate any of these terms of service mentioned above,
+your IP address will be blocked from future uploads.
+
+DELETION
+--------
+
+If you would like to request a permanent file deletion,
+please contact me via IRC - <a href="ircs://irc.libera.chat/xaizone">irc.libera.chat</a>
+</pre>
