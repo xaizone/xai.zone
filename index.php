@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filename.'.'.$upload_type))
         {
             echo "https://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type."\n";
+	    _log($_SERVER['HTTP_X_FORWARDED_FOR']." - ".$filename.".".$upload_type);
         }
     }
     else {
@@ -44,5 +45,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 else {
     echo file_get_contents("info.txt");
+}
+
+function _log($text) {
+    openlog("upload", LOG_PID | LOG_PERROR, LOG_LOCAL0);
+    syslog(LOG_INFO, $text);
+    closelog();
 }
 ?>
