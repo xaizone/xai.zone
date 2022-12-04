@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $upload_type = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filename.'.'.$upload_type))
         {
-            echo "https://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type."\n";
+            echo "https://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
 	    _log($_SERVER['HTTP_X_FORWARDED_FOR']." - ".$filename.".".$upload_type);
         }
     }
