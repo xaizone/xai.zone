@@ -1,4 +1,3 @@
-<pre>
            _
  __ ____ _(_)  ______ _ _  ___
  \ \ / _` | |_|_ / _ \ ' \/ -_)
@@ -9,7 +8,7 @@
 HTTP POST:
     curl -F'file=@yourfile.png' https://xai.zone
 
-Blacklisted MIME types:     
+Blacklisted MIME types:
     'text/html',
     'application/x-httpd-php',
     'application/xhtml+xml',
@@ -18,7 +17,7 @@ Blacklisted MIME types:
     'application/java-archive',
     'application/java-vm'
 
-Maximum body size: 512M
+Maximum body size: 100M
 
 Files are currently kept for 14 days.
 
@@ -38,11 +37,10 @@ DELETION
 --------
 
 If you would like to request a permanent file deletion,
-please contact me via IRC - <a href="ircs://irc.libera.chat/xaizone">irc.libera.chat</a>
+please contact me via IRC - irc.libera.chat#xaizone
 
 SOURCE
 ------
 
 You can find the source of this website on my GitHub.
-<a href="https://github.com/xaizone/xai.zone">https://github.com/xaizone/xai.zone</a>
-</pre>
+https://github.com/xaizone/xai.zone
