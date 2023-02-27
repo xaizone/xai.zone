@@ -12,7 +12,11 @@ const blacklistedMime = array(
 const blacklistedHost = array(
 );
 
-define("maxFileSize", "512000000");
+define("maxFileSize", "100000000");
+
+if($_SERVER['REQUEST_METHOD'] == 'GET') {
+    echo "<pre>".file_get_contents("readme")."</pre>";
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_FILES['file'])) {
@@ -35,14 +39,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $upload_type = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filename.'.'.$upload_type))
         {
-            echo "https://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
+            echo (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http").'://'.$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type.PHP_EOL;
         }
     }
     else {
         echo "no file provided";
     }
-}
-else {
-    echo "<pre>".file_get_contents("readme")."</pre>";
 }
 ?>
