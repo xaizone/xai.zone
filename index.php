@@ -5,8 +5,7 @@ const blacklistedMime = array(
     'application/xhtml+xml',
     'application/x-dosexec',
     'application/x-msdownload',
-    'application/java-archive',
-    'application/java-vm'
+    'application/java-archive'
 );
 
 const blacklistedHost = array(
@@ -39,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $upload_type = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filename.'.'.$upload_type))
         {
-            echo (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http").'://'.$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type.PHP_EOL;
+            echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http").'://'.$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
         }
     }
     else {

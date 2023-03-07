@@ -14,8 +14,7 @@ Blacklisted MIME types:
     'application/xhtml+xml',
     'application/x-dosexec',
     'application/x-msdownload',
-    'application/java-archive',
-    'application/java-vm'
+    'application/java-archive'
 
 Maximum body size: 100M
 
