@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 const blacklistedMime = array(
     'text/html',
     'application/x-httpd-php',
@@ -8,22 +9,12 @@ const blacklistedMime = array(
     'application/java-archive'
 );
 
-const blacklistedHost = array(
-);
-
-define("maxFileSize", "100000000");
-
 if($_SERVER['REQUEST_METHOD'] == 'GET') {
-    echo "<pre>".file_get_contents("readme")."</pre>";
+    echo "<pre>".file_get_contents('readme')."</pre>";
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_FILES['file'])) {
-        if(in_array($_SERVER['HTTP_X_FORWARDED_FOR'], blacklistedHost)) {
-            echo "your ip address is blocked from uploading";
-            return;
-        }
-
         if($_FILES['file']['size'] > maxFileSize) {
             echo "file body size is too large";
             return;
@@ -36,9 +27,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $filename = bin2hex(openssl_random_pseudo_bytes(8));
         $upload_type = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $filename.'.'.$upload_type))
-        {
-            echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http").'://'.$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
+        if (move_uploaded_file($_FILES['file']['tmp_name'], uploadFolder."/".$filename.'.'.$upload_type)){
+            echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http")."://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
+        }
+    } else if (isset($_POST['url'])) {
+        if (filter_var($_POST['url'], FILTER_VALIDATE_URL)) {
+            $id = bin2hex(openssl_random_pseudo_bytes(4));
+            if (file_put_contents(urlFolder."/".$id, $_POST['url'])) {
+                echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http")."://".$_SERVER['HTTP_HOST']."/".$id;
+            } else {
+                echo "failed writing file";
+            }
+        } else {
+            echo "invalid url";
         }
     }
     else {

@@ -7,6 +7,7 @@
 
 HTTP POST:
     curl -F'file=@yourfile.png' https://xai.zone
+    curl -F'url=example.com' https://xai.zone
 
 Blacklisted MIME types:
     'text/html',
@@ -18,7 +19,8 @@ Blacklisted MIME types:
 
 Maximum body size: 100M
 
-Files are currently kept for 14 days.
+Files are currently kept for 30 days.
+URLs are currently kept forever.
 
 TERMS OF SERVICE
 ----------------
