@@ -25,14 +25,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             return;
         }
 
-        $filename = bin2hex(openssl_random_pseudo_bytes(8));
+        $filename = bin2hex(random_bytes(uploadLength));
         $upload_type = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         if (move_uploaded_file($_FILES['file']['tmp_name'], uploadFolder."/".$filename.'.'.$upload_type)){
             echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http")."://".$_SERVER['HTTP_HOST']."/".$filename.".".$upload_type;
         }
     } else if (isset($_POST['url'])) {
         if (filter_var($_POST['url'], FILTER_VALIDATE_URL)) {
-            $id = bin2hex(openssl_random_pseudo_bytes(4));
+            $id = bin2hex(random_bytes(urlLength));
             if (file_put_contents(urlFolder."/".$id, $_POST['url'])) {
                 echo (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' ? "https" : "http")."://".$_SERVER['HTTP_HOST']."/".$id;
             } else {
