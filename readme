@@ -17,7 +17,7 @@ Blacklisted MIME types:
     'application/x-msdownload',
     'application/java-archive'
 
-Maximum body size: 100M
+Maximum body size: 512M
 
 Files are currently kept for 30 days.
 URLs are currently kept forever.

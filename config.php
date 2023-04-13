@@ -1,5 +1,5 @@
 <?php
-define("maxFileSize", "100000000");
+define("maxFileSize", "512000000");
 define("urlFolder", "url");
 define("uploadFolder", "upload");
 define("uploadLength", 8);
